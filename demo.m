@@ -1,27 +1,27 @@
 clc;clear;close all;
 plaintext = randi([0,1],1,128);
 password = randi([0,1],1,128);
-ciphertext = AES_encryption(plaintext,password); %AES¼ÓÃÜ£¬ÊäÈëÃ÷ÎÄÖ»ÄÜÎª1ĞĞ258*nÁĞµÄ±ÈÌØÁ÷£¬ÃÜÂëÖ»ÄÜÎª1ĞĞ258ÁĞµÄ±ÈÌØÁ÷
+ciphertext = AES_encryption(plaintext,password); %AESåŠ å¯†ï¼Œè¾“å…¥æ˜æ–‡åªèƒ½ä¸º1è¡Œ258*nåˆ—çš„æ¯”ç‰¹æµï¼Œå¯†ç åªèƒ½ä¸º1è¡Œ258åˆ—çš„æ¯”ç‰¹æµ
 
-plaintext_decrypted = AES_decryption(ciphertext,password);%AES½âÃÜ
+plaintext_decrypted = AES_decryption(ciphertext,password);%AESè§£å¯†
 password(1) = ~password(1);
-plaintext_decrypted2 = AES_decryption(ciphertext,password);%AES½âÃÜ
+plaintext_decrypted2 = AES_decryption(ciphertext,password);%AESè§£å¯†
 
 password(1) = ~password(1);
 ciphertext(1) = ~ciphertext(1);
-plaintext_decrypted3 = AES_decryption(ciphertext,password);%AES½âÃÜ
+plaintext_decrypted3 = AES_decryption(ciphertext,password);%AESè§£å¯†
 
-[~,bit_error_rate] = biterr(plaintext,plaintext_decrypted)   %¼ÆËã´íÎóÂÊ
-[~,bit_error_rate2] = biterr(plaintext,plaintext_decrypted2)   %ÃÜÂë´íÒ»¸ö±ÈÌØºó£¬¼ÆËã´íÎóÂÊ
-[~,bit_error_rate3] = biterr(plaintext,plaintext_decrypted3)   %Ã÷ÎÄ´íÒ»¸ö±ÈÌØºó£¬¼ÆËã´íÎóÂÊ
+[~,bit_error_rate] = biterr(plaintext,plaintext_decrypted)   %è®¡ç®—é”™è¯¯ç‡
+[~,bit_error_rate2] = biterr(plaintext,plaintext_decrypted2)   %å¯†ç é”™ä¸€ä¸ªæ¯”ç‰¹åï¼Œè®¡ç®—é”™è¯¯ç‡
+[~,bit_error_rate3] = biterr(plaintext,plaintext_decrypted3)   %å¯†æ–‡é”™ä¸€ä¸ªæ¯”ç‰¹åï¼Œè®¡ç®—é”™è¯¯ç‡
 
 
 subplot(2,1,1)
 plot(abs(plaintext_decrypted-plaintext_decrypted2))
-title("128bitÃÜÂë£¬128bitÃ÷ÎÄ£¬ÃÜÂë´íÎóÒ»¸ö±ÈÌØ£¬½âÃÜËùµÃÓëÃ÷ÎÄµÄ´íÎóÍ¼°¸")
+title("128bitå¯†ç ï¼Œ128bitæ˜æ–‡ï¼Œå¯†ç é”™è¯¯ä¸€ä¸ªæ¯”ç‰¹ï¼Œè§£å¯†æ‰€å¾—ä¸æ˜æ–‡çš„é”™è¯¯å›¾æ¡ˆ")
 
 subplot(2,1,2)
 plot(abs(plaintext_decrypted-plaintext_decrypted3))
-title("128bitÃÜÂë£¬128bitÃ÷ÎÄ£¬ÃÜÎÄ´íÎóÒ»¸ö±ÈÌØ£¬½âÃÜËùµÃÓëÃ÷ÎÄµÄ´íÎóÍ¼°¸")
+title("128bitå¯†ç ï¼Œ128bitæ˜æ–‡ï¼Œå¯†æ–‡é”™è¯¯ä¸€ä¸ªæ¯”ç‰¹ï¼Œè§£å¯†æ‰€å¾—ä¸æ˜æ–‡çš„é”™è¯¯å›¾æ¡ˆ")
 
 
