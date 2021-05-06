@@ -1,0 +1,19 @@
+function expanded_key = expand_key(initial_key)
+%√‹‘ø¿©’π
+    Rconj = [0x01 0x02 0x04 0x08 0x10 0x20 0x40 0x80 0x1B 0x36;
+             0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00;
+             0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00;
+             0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00];
+    expanded_key = zeros(4,44);
+    expanded_key = uint8(expanded_key);
+    expanded_key(:,1:4) = uint8(initial_key);
+    
+    for j = 5:length(expanded_key)
+        if mod(j,4) == 1
+            expanded_key(:,j) = bitxor(expanded_key(:,j-4),g(expanded_key(:,j-1),Rconj(:,fix((j-1)/4))),'uint8');
+        else
+            expanded_key(:,j) = bitxor(expanded_key(:,j-4),expanded_key(:,j-1),'uint8');
+        end
+    end 
+    expanded_key = expanded_key(:,5:end); 
+end
